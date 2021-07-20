@@ -5,19 +5,60 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  // 首页我们需要默认空路径重定向到 home 下，避免空页面
   {
     path: '/',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    redirect: 'home'
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
+    path: '/home',
+    name: 'home',
+    component: Home,
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/category',
+    name: 'category',
+    component: () => import(/* webpackChunkName: "category" */ '../views/Category.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import(/* webpackChunkName: "cart" */ '../views/Cart.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/user',
+    name: 'user',
+    component: () => import(/* webpackChunkName: "user" */ '../views/User.vue'),
+    meta: {
+      index: 1
+    }
+  },
+  {
+    path: '/anyIndex2',
+    name: 'anyIndex2',
+    component: () => import(/* webpackChunkName: "user" */ '../views/anyIndex2.vue'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "user" */ '../views/Login.vue'),
+    meta: {
+      index: 2
+    }
+  },
 ]
 
 const router = new VueRouter({
