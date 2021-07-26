@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.common.dev.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">欢迎学习Vue</h2>
+    </div>
+    <script>
+        Vue.config.productionTip = false
+        const vm = new Vue({
+           el:'#root',
+           data:{
+               opacity:1
+           },
+            mounted() {
+               console.log(this)
+                setInterval(()=>{
+                    vm.opacity -= 0.01
+                    if (vm.opacity <= 0) vm.opacity=1
+                },16)
+            }
+        })
+
+    </script>
+</body>
+</html>

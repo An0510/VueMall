@@ -65,17 +65,86 @@ export default {
     },20)
   },
   methods:{
-    //初始化滚动组件，拿不到this.$refs.wrapper代码
+    //初始化滚动组件，拿不到this.$refs.wrapper代码就跳出
     initScroll(){
       if (!this.$refs.wrapper){
         return
       }
+      //better-scroll 初始化 传入配置项参数
+      this.scroll = new BScroll(this.$refs.wrapper,{
+        probeType: this.probeType,
+        click: this.click,
+        scrollX: this.scrollX
+      })
+      //是否派发滚动事件
+      if(this.listenScroll){
+        const self = this
+        this.scroll.on('scroll',(position)=>{
+          self.$emit('scroll',position)
+        })
+      }
+      if(this.pullup){
+        this.scroll.on('scrollEnd',()=>{
+          //滚动到底部
+          if(this.scroll.y <= (this.scroll.maxScrollY+50)){
+            //派发滚动到底部的事件
+            this.$emit('scrollToEnd')
+          }
+        })
+      }
+      if (this.pulldown){
+        this.scroll.on('touchend',(pos)=>{
+          //下拉动作
+          if(pos.y > 50){
+            //下拉刷新
+            this.$emit('pulldown')
+          }
+        })
+      }
+      if (this.beforeScroll){
+        this.scroll.on('beforeScrollStart',()=>{
+          //列表滚动前触发
+          this.$emit('beforeScroll')
+        })
+      }
+    },
+    disable(){
+      //代理 better-scroll的disable方法
+      this.scroll && this.scroll.disable()
+    },
+    enable(){
+      //代理better-scroll的enable方法
+      this.scroll && this.scroll.enable()
+    },
+    refresh() {
+      // 代理 better-scroll 的 refresh 方法
+      this.scroll && this.scroll.refresh()
+    },
+    scrollTo() {
+      // 代理 better-scroll 的 scrollTo 方法
+      this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)
+    },
+    scrollToElement() {
+      // 代理 better-scroll 的 scrollToElement 方法
+      this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments)
+    },
+  },
+  watch:{
+    data(){
+      setTimeout(()=>{
+        this.refresh()
+      },this.refreshDelay)
     }
   },
+
   name: "ListScroll"
 }
 </script>
 
 <style scoped>
-
+.scroll-wrapper {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 </style>
