@@ -21,8 +21,29 @@
           ></li>
         </ul>
       </list-scroll>
-      <div >
-
+      <div class="search-content">
+<!--        向该组件传入数据-->
+        <list-scroll :scroll-data="categoryData" >
+          <div class="swiper-container">
+            <div class="swiper-wrapper">
+              <template v-for="(category, index) in categoryData">
+<!--                点到哪个一级菜单显示哪个一级菜单对应的二级菜单-->
+                <div class="swiper-slide" v-if="currentIndex == category.categoryId" :key="index">
+                  <!-- <img class="category-main-img" :src="category.mainImgUrl" v-if="category.mainImgUrl"/> -->
+                  <div class="category-list" v-for="(products, index) in category.secondLevelCategoryVOS" :key="index">
+<!--                    二级菜单大类名-->
+                    <p class="catogory-title">{{products.categoryName}}</p>
+<!--                    二级菜单里的小类-->
+                    <div class="product-item" v-for="(product, index) in products.thirdLevelCategoryVOS" :key="index" @click="selectProduct(product)">
+                      <img src="//s.weituibao.com/1583591077131/%E5%88%86%E7%B1%BB.png" class="product-img"/>
+                      <p v-text="product.categoryName" class="product-title"></p>
+                    </div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </list-scroll>
       </div>
     </div>
   </div>
@@ -40,6 +61,7 @@ export default {
     return{
       //数据
       categoryData:[],
+      //默认选中的是第一行
       currentIndex:15
     }
   },
@@ -55,9 +77,12 @@ export default {
     //设置视口高度
     setWrapHeight(){
       //可见高度
-      let $screenHeight = document.documentElement.clientHeight
+      let screenHeight = document.documentElement.clientHeight
       // 减掉了header的高度
-      this.$refs.searchWrap.style.height = $screenHeight - 100 +'px'
+      this.$refs.searchWrap.style.height = screenHeight - 100 +'px'
+    },
+    selectProduct(item){
+      this.$router.push({path:`product-list?categoryId=${item.categoryId}`})
     }
   }
 }
@@ -109,7 +134,6 @@ export default {
   .search-wrap {
     .fj();
     width: 100%;
-    height: 100%;
     margin-top: 50px;
     background: #F8F8F8;
     border-top: 1px solid #999;
@@ -120,6 +144,7 @@ export default {
       .nav-side {
         width: 100%;
         .boxSizing();
+
         background: #F8F8F8;
         li {
           width: 100%;
