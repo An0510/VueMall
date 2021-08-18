@@ -2,7 +2,7 @@ import axios from 'axios'
 import {Toast} from 'vant'
 
 //请求的地址
-axios.defaults.baseURL = process.env.NODE_ENV=='development'?'//127.0.0.1:28019/api/v1':'//127.0.0.1:28019/api/v1'
+axios.defaults.baseURL = process.env.NODE_ENV=='development'?'http://backend-api-01.newbee.ltd/api/v1':'//127.0.0.1:28019/api/v1'
 // 跨域请求是要不要携带cookie，本项目没有跨域请求的情况
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'

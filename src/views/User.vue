@@ -12,15 +12,15 @@
       </div>
     </div>
     <ul class="user-list">
-      <li>
+      <li @click="goTo('order')">
         <span>我的订单</span>
         <span class="iconfont icon-qianjin"></span>
       </li>
-      <li>
-        <span>账号管理</span>
+      <li @click="goTo('user-setting')">
+        <span >账号管理</span>
         <span class="iconfont icon-qianjin"></span>
       </li>
-      <li>
+      <li @click="goTo('address')">
         <span>地址管理</span>
         <span class="iconfont icon-qianjin"></span>
       </li>
@@ -44,6 +44,14 @@ export default {
   data(){
     return {
       user:{}
+    }
+  },
+  methods:{
+    goTo(r){
+      this.$router.push({path:r})
+    },
+    goUserSetting(){
+      this.$router.push({path:'/user-setting'})
     }
   },
   async mounted(){

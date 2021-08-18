@@ -44,9 +44,9 @@ const routes = [
     }
   },
   {
-    path: '/anyIndex2',
-    name: 'anyIndex2',
-    component: () => import(/* webpackChunkName: "user" */ '../views/anyIndex2.vue'),
+    path:'/user-setting',
+    name:'user-setting',
+    component: ()=>import('../views/UserSetting'),
     meta: {
       index: 2
     }
@@ -58,6 +58,62 @@ const routes = [
     meta: {
       index: 2
     }
+  },
+  {
+    path: '/product-list',
+    name: '/product-list',
+    component: () => import(/* webpackChunkName: "user" */ '../views/ProductList.vue'),
+    meta: {
+      index: 2
+    }
+  },
+  {
+    path: '/product/:id',
+    name: 'product',
+    meta: {
+      index: 3
+    },
+    component: () => import(/* webpackChunkName: "product" */ '../views/ProductDetail.vue'),
+  },
+  {
+    path: '/create-order',
+    name: 'create-order',
+    meta: {
+      index: 3
+    },
+    component: () => import(/* webpackChunkName: "create-order" */ '../views/CreateOrder.vue'),
+  },
+  {
+    path: '/order',
+    name: 'order',
+    meta: {
+      index: 3
+    },
+    component: () => import(/* webpackChunkName: "create-order" */ '../views/Order.vue'),
+  },
+  {
+    path: '/order-detail',
+    name: 'order-detail',
+    meta: {
+      index: 3
+    },
+    component: () => import(/* webpackChunkName: "order-detail" */ '../views/OrderDetail.vue'),
+  },
+  {
+    path: '/address',
+    name: 'address',
+    meta: {
+      index: 3
+    },
+    component: () => import(/* webpackChunkName: "address" */ '../views/Address.vue'),
+  },
+  {
+    path: '/address-edit',
+    name: 'address-edit',
+    meta: {
+      index: 3
+    },
+    component: () => import(/* webpackChunkName: "address" */ '../views/AddressEdit.vue'),
   },
 ]
 

@@ -51,38 +51,37 @@
 
 <script>
 import {getCategory} from "@/service/goods";
-import listScroll from "@/components/ListScroll"
+import listScroll from '@/components/ListScroll'
 export default {
-  name: "Category",
-  components:{
+  name: 'Category',
+  components: {
     listScroll
   },
-  data(){
-    return{
-      //数据
-      categoryData:[],
-      //默认选中的是第一行
-      currentIndex:15
+  data() {
+    return {
+      categoryData: [],
+      currentIndex: 15,
     }
   },
-  async mounted(){
-    // this.setWrapHeight()
-    const {data} = await getCategory()
+  async mounted() {
+    this.setWrapHeight()
+    const { data } = await getCategory()
     this.categoryData = data
   },
-  methods:{
-    selectMenu(index){
+  methods: {
+    setWrapHeight() {
+      // 设置视口高度
+      let $screenHeight = document.documentElement.clientHeight
+      this.$refs.searchWrap.style.height = $screenHeight - 100 + 'px'
+    },
+    selectMenu(index) {
       this.currentIndex = index
     },
-    //设置视口高度
-    setWrapHeight(){
-      //可见高度
-      let screenHeight = document.documentElement.clientHeight
-      // 减掉了header的高度
-      this.$refs.searchWrap.style.height = screenHeight - 100 +'px'
-    },
     selectProduct(item){
-      this.$router.push({path:`product-list?categoryId=${item.categoryId}`})
+      this.$router.push({ path: `product-list?categoryId=${item.categoryId}` })
+    },
+    goHome(){
+      this.$router.push({ path: 'home' })
     }
   }
 }
@@ -128,6 +127,7 @@ export default {
       .search-title {
         font-size: 12px;
         color: #666;
+        width: 100%;
       }
     }
   }
@@ -144,7 +144,6 @@ export default {
       .nav-side {
         width: 100%;
         .boxSizing();
-
         background: #F8F8F8;
         li {
           width: 100%;
@@ -161,7 +160,8 @@ export default {
     }
     .search-content {
       width: 72%;
-      height: 100%;
+      //height: 100%;
+      //overflow: hidden;
       padding: 0 10px;
       background: #fff;
       .boxSizing();
