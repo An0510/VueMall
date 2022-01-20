@@ -79,10 +79,10 @@ export default {
     },
     async goToCart(){
       //await获取到了之后就会把resolve的值传给左边的变量
-      const {data, resultCode} = await addCart({
-        goodsCount: 1,
-        goodsId: this.detail.goodsId
-      })
+      // const {data, resultCode} = await addCart({
+      //   goodsCount: 1,
+      //   goodsId: this.detail.goodsId
+      // })
       await this.$router.push({path: '/cart'})
     }
   },

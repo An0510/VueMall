@@ -10,8 +10,9 @@
         <span>分类</span>
       </router-link>
       <router-link tag="li" class="nav-list-item" to="cart">
-        <van-icon class="cartCount" :badge="!count ? '' : count" />
-        <span class="iconfont icon-gouwudai"  name="shopping-cart-o" :info="!count ? '' : count" ></span>
+        <span class="iconfont icon-gouwudai"  name="shopping-cart-o" :info="!count ? '' : count" >
+          <van-icon class="cartCount" :badge="!count ? '' : count" />
+        </span>
         <span>购物车</span>
       </router-link>
       <router-link tag="li" class="nav-list-item" to="user">
@@ -30,6 +31,7 @@ export default {
     return{}
   },
   mounted(){
+    //获取token
     const token = getLocal('token')
     if(token){
       this.$store.dispatch('updateCart')
@@ -58,13 +60,14 @@ export default {
   .nav-list {
     width: 100%;
     .fj();
-    flex-direction: row;
+    //flex-direction: row;
     padding: 0;
     .nav-list-item {
       display: flex;
       flex: 1;
       flex-direction: column;
       text-align: center;
+      position: relative;
       color: #666;
       //点到哪个哪个就变色
       &.router-link-active {
@@ -79,6 +82,9 @@ export default {
       }
       span{
         font-size: 12px;
+      }
+      .van-info{
+        right: -45px;
       }
     }
   }

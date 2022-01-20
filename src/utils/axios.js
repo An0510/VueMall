@@ -2,11 +2,12 @@ import axios from 'axios'
 import {Toast} from 'vant'
 
 //请求的地址
-axios.defaults.baseURL = process.env.NODE_ENV=='development'?'http://backend-api-01.newbee.ltd/api/v1':'//127.0.0.1:28019/api/v1'
+axios.defaults.baseURL = process.env.NODE_ENV == 'development' ? 'http://backend-api-01.newbee.ltd/api/v1' : 'http://backend-api-01.newbee.ltd/api/v1'
+// axios.defaults.baseURL = process.env.NODE_ENV=='development'?'http://backend-api-01.newbee.ltd/api/v1':'//127.0.0.1:28019/api/v1'
 // 跨域请求是要不要携带cookie，本项目没有跨域请求的情况
 axios.defaults.withCredentials = true
 axios.defaults.headers['X-Requested-With'] = 'XMLHttpRequest'
-// 本课程判断用户登录状态是通过 token 来实现 localStorage 可以让数据一直存储在浏览器，除非卸载
+// 本判断用户登录状态是通过 token 来实现 localStorage 可以让数据一直存储在浏览器，除非卸载
 axios.defaults.headers['token'] = localStorage.getItem('token') || ''
 //post请求的时候，发送json形式的数据包
 axios.defaults.headers.post['Content-Type'] = 'application/json'

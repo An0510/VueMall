@@ -68,8 +68,8 @@ export default {
   data(){
     return{
       //登录
-      username:'',
-      password:'',
+      username:'17792379162',
+      password:'123456',
       // 注册
       username1:'',
       password1:'',
@@ -85,10 +85,12 @@ export default {
     dealTriVel(){
       this.$refs.loginVerifyRef.$refs.instance.checkCode()
     },
+    // 切换登录和注册
     toggle(v){
       this.verify=false
       this.type=v
     },
+    // 提交,登录或注册
     async onSubmit(values){
       //每次提交之前都需要执行一次验证码，获取verify的最新值
       this.dealTriVel()
@@ -96,7 +98,7 @@ export default {
         Toast.fail('验证码未填写或填写错误')
         return
       }
-      if(this.type=='login'){
+      if(this.type==='login'){
         //调用service/user.js中的方法
         const {data,resultCode} = await login({
           "loginName":values.username,
@@ -104,7 +106,7 @@ export default {
         })
         // 设置本地token存储
         setLocal('token',data)
-        window.location.href = '/'
+        window.location.href = '/vuemall'
       }else {
         //调用service/user.js中的方法
         const {data} = await register({
@@ -123,7 +125,7 @@ export default {
     error(obj){
       this.verify=false
     }
-    
+
   }
 }
 

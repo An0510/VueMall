@@ -118,6 +118,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  // mode: 'history',
+  // base:'/vuemall2',
   routes
 })
 

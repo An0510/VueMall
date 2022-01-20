@@ -6,6 +6,7 @@ export default {
         const {data} = await getCart()
         // console.log('数据',data)
         context.commit('changeCart',{
+            //将购物车的数量传递过去
             count:data.length || 0
         })
     }

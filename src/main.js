@@ -6,13 +6,13 @@ import { Divider, Popup, Overlay, Loading, Dialog,
   ContactCard, Form, AddressEdit, AddressList, Field,
   CellGroup, Cell, SwipeCell, Icon, Stepper, Card, Checkbox,
   CheckboxGroup, Button, Swipe, SwipeItem, PullRefresh, List, Tab,
-  Tabs, GoodsAction, GoodsActionIcon, GoodsActionButton, SubmitBar, Toast } from 'vant'
+  Tabs, Lazyload,GoodsAction, GoodsActionIcon, GoodsActionButton, SubmitBar, Toast } from 'vant'
 
 import md5 from 'js-md5' //密码加密md5
 import 'lib-flexible/flexible'
 import {prefix} from "@/common/js/utils";
 
-Vue.use(Divider).use(Popup).use(Overlay).use(Loading)
+Vue.use(Divider).use(Lazyload).use(Popup).use(Overlay).use(Loading)
     .use(Dialog).use(Toast).use(ContactCard).use(Form)
     .use(AddressEdit).use(AddressList).use(Field).use(CellGroup)
     .use(Cell).use(SwipeCell).use(Icon).use(Stepper).use(Card)
