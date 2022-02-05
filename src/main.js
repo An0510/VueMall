@@ -31,3 +31,4 @@ Vue.prototype.$md5 = md5;
 Vue.prototype.prefix = prefix
 //axios里的vRouter
 window.vRouter = router
+
